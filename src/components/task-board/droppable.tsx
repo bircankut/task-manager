@@ -1,29 +1,20 @@
 import { useDroppable } from "@dnd-kit/core";
-import { Dispatch, ReactNode, SetStateAction } from "react";
+import { ReactNode } from "react";
 
-export default function Droppable({
-  status,
-  tasks,
-  setTasks,
-  children,
-}: {
-  status: string;
-  tasks: { id: string; name: string; context: string; status: string }[];
-  setTasks: Dispatch<
-    SetStateAction<{ id: string; name: string; context: string; status: string }[]>
-  >;
+interface DroppableProps {
+  id: string;
+  data?: Record<string, any>;
   children: ReactNode;
-}) {
+}
+
+export default function Droppable({ id, data, children }: DroppableProps) {
   const { setNodeRef } = useDroppable({
-    id: status,
-    data: { status },
+    id,
+    data,
   });
 
   return (
-    <div
-      ref={setNodeRef}
-      className=" text-zinc-900 "
-    >
+    <div ref={setNodeRef} className=" text-zinc-900 ">
       {children}
     </div>
   );

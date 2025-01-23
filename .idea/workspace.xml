@@ -1,4 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PropertiesComponent">{}</component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b5628d3d-60aa-4809-81ec-245702b93f4c" name="Changes" comment="Refactor: change structure for task management section">
+      <change afterPath="$PROJECT_DIR$/src/components/task-header/task-header.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/task-modal/task-modal.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/contexts/task-context/task-context.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/daskboard/dashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/daskboard/dashboard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/task-board/draggable.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/task-board/draggable.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/task-board/droppable.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/task-board/droppable.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/task-board/task-board.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/task-board/task-board.tsx" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "git-widget-placeholder": "main",
+    "prettierjs.PrettierConfiguration.Package": "/Users/bircan/workplace/task-manager/node_modules/prettier",
+    "ts.external.directory.path": "/Users/bircan/workplace/task-manager/node_modules/typescript/lib"
+  }
+}]]></component>
+  <component name="TaskManager">
+    <task id="LOCAL-00001" summary="Refactor: change structure for task management section">
+      <option name="closed" value="true" />
+      <created>1737641495203</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1737641495203</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Feature: implement drag-and-drop task board with task status management" />
+    <MESSAGE value="Refactor: change structure for task management section" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor: change structure for task management section" />
+  </component>
 </project>

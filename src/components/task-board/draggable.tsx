@@ -1,14 +1,12 @@
 import { useDraggable } from "@dnd-kit/core";
-import {CSSProperties, ReactNode} from "react";
-
+import { CSSProperties, ReactNode } from "react";
 
 interface DraggableProps {
   id: string;
-  status: string;
   children: ReactNode;
 }
 
-export default function Draggable({ id, status, children }: DraggableProps) {
+export default function Draggable({ id, children }: DraggableProps) {
   const { attributes, listeners, setNodeRef, transform, isDragging } =
     useDraggable({ id });
 
@@ -22,14 +20,7 @@ export default function Draggable({ id, status, children }: DraggableProps) {
   };
 
   return (
-    <div
-      ref={setNodeRef}
-      style={style}
-      {...attributes}
-      {...listeners}
-      className="cursor-grab"
-      data-status={status}
-    >
+    <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
       {children}
     </div>
   );
