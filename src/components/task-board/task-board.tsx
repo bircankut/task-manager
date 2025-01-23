@@ -91,8 +91,11 @@ const TaskBoard: React.FC = () => {
                 .filter((task) => task.status === section.status)
                 .map((task) => (
                   <Draggable key={task.id} id={task.id}>
-                    <div className="bg-white p-2 rounded shadow mb-2 h-40 flex items-center justify-center">
-                      {task.name} {task.context}
+                    <div className="bg-white p-2 rounded shadow mb-2 h-40 flex flex-col">
+                      <span className="text-base text-stone-600 font-bold">
+                        Task Name: {task.name}
+                      </span>{" "}
+                      <span className="text-sm text-slate-500">Context: {task.context}</span>
                     </div>
                   </Draggable>
                 ))}
