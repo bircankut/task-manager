@@ -22,8 +22,7 @@ export default function Droppable({
   return (
     <div
       ref={setNodeRef}
-      className="flex-1 bg-gray-100 p-4 rounded text-zinc-900"
-      style={{ minHeight: "200px" }}
+      className=" text-zinc-900 "
     >
       {children}
     </div>
