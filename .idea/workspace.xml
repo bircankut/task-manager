@@ -4,48 +4,76 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b5628d3d-60aa-4809-81ec-245702b93f4c" name="Changes" comment="Refactor: change structure for task management section">
+    <list default="true" id="b5628d3d-60aa-4809-81ec-245702b93f4c" name="Changes" comment="Refactor: change structure for task update logic">
+      <change afterPath="$PROJECT_DIR$/src/components/calendar/calendar.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/dashboard-banner/dashboard-banner.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/dashboard-header/dashboard-header.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/dashboard-nav/dashboard-nav.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/icon-button/icon-button.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/file.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/globe.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/next.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vercel.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/window.svg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/daskboard/dashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/daskboard/dashboard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/task-board/draggable.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/task-board/draggable.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/task-board/droppable.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/task-board/droppable.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/task-board/task-board.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/task-board/task-board.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/task-board/task-board.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/task-board/task-board.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/contexts/task-context/task-context.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/contexts/task-context/task-context.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/globals.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/profile/profile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/profile/profile.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/sidebar/sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/sidebar/sidebar.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 7
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2s4khkiVnf0ECTYDylUsE8ZaRLn" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "prettierjs.PrettierConfiguration.Package": "/Users/bircan/workplace/task-manager/node_modules/prettier",
-    "ts.external.directory.path": "/Users/bircan/workplace/task-manager/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/bircan/workplace/task-manager/node_modules/prettier&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/bircan/workplace/task-manager/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public" />
+      <recent name="$PROJECT_DIR$/public/static" />
+      <recent name="$PROJECT_DIR$/public/images/backgrounds" />
+      <recent name="$PROJECT_DIR$/public/images" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -70,6 +98,8 @@
       <option name="presentableId" value="Default" />
       <updated>1737722360585</updated>
       <workItem from="1737722364826" duration="18978000" />
+      <workItem from="1738056215136" duration="8218000" />
+      <workItem from="1738154583155" duration="1561000" />
     </task>
     <option name="localTasksCounter" value="2" />
     <servers />

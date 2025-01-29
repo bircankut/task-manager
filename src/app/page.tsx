@@ -1,13 +1,15 @@
+"use client"
 import Profile from "@/components/profile/profile";
-import Sidebar from "@/components/sidebar/sidebar";
+import { Sidebar } from "@/components/sidebar/sidebar";
 import Dashboard from "@/app/daskboard/dashboard";
+import {useSidebar} from "@/contexts/sidebar-context/sidebar-context";
 
 export default function Home() {
-  let sidebarOpen = true;
+    const { sidebarState } = useSidebar();
   return (
     <div className="h-screen w-full flex flex-row bg-indigo-100">
       <div
-        className={`bg-indigo-300 ${sidebarOpen ? "w-64" : "w-16"} transition-all duration-300`}
+        className={`bg-indigo-300 ${sidebarState ? "w-64" : "w-16"} transition-all duration-300`}
       >
         <Sidebar />
       </div>
