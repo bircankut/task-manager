@@ -6,6 +6,8 @@ interface IconButtonProps {
   icon: ComponentType<{ size?: string | number; color?: string }>;
   className?: string;
   onClick?: () => void;
+  size?: string | number;
+  color?: string;
 }
 
 const IconButton = ({
@@ -14,6 +16,8 @@ const IconButton = ({
   icon: IconComponent,
   className,
   onClick,
+    size = 24,
+    color= "#57534E",
   ...props
 }: IconButtonProps) => {
   return (
@@ -22,10 +26,10 @@ const IconButton = ({
       {...props}
       disabled={disabled}
       aria-disabled={disabled}
-      className={`h-7 w-7 mx-4 ${className}`}
+      className={className}
     >
       {IconComponent && (
-        <IconComponent size={24} color={"#57534E"} aria-hidden="true" />
+        <IconComponent size={size} color={color} aria-hidden="true" />
       )}
       {children}
     </button>
