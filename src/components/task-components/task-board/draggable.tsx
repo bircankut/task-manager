@@ -20,9 +20,11 @@ export default function Draggable({ id, children }: DraggableProps) {
     transition: isDragging ? "none" : "transform 200ms ease",
     opacity: isDragging ? 0 : 1,
   };
+  const draggableClass = "bg-white p-6 rounded-lg mb-5";
+
 
   return (
-    <div ref={setNodeRef} style={draggableStyle} {...attributes} {...listeners}>
+    <div ref={setNodeRef} className={draggableClass} style={draggableStyle} {...attributes} {...listeners}>
       {children}
     </div>
   );
