@@ -22,7 +22,6 @@ export default function Draggable({ id, children }: DraggableProps) {
   };
   const draggableClass = "bg-white p-6 rounded-lg mb-5";
 
-
   return (
     <div ref={setNodeRef} className={draggableClass} style={draggableStyle} {...attributes} {...listeners}>
       {children}

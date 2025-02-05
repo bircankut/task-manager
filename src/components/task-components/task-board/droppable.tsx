@@ -10,21 +10,21 @@ interface DroppableProps {
 export default function Droppable({ id, data, children }: DroppableProps) {
   const { isOver, setNodeRef } = useDroppable({
     id,
-    data,
+    data: { status: id },
   });
 
   const droppableStyle = {
     borderRadius: "8px",
     transition: "background-color 0.2s ease, border 0.2s ease",
-    marginTop: "20px",
+    minHeight:"500px",
   };
 
   const droppableClass = isOver
     ? "border-2 border-dashed border-indigo-300"
-    : "border-2 border-transparent";
+    : "border-2 border-transparent ";
 
   return (
-    <div ref={setNodeRef} className={droppableClass} style={droppableStyle}>
+    <div ref={setNodeRef} className={droppableClass} style={droppableStyle} data-status={id}>
       {children}
     </div>
   );

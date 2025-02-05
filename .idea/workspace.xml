@@ -4,26 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b5628d3d-60aa-4809-81ec-245702b93f4c" name="Changes" comment="Refactor: change structure for task update logic">
-      <change afterPath="$PROJECT_DIR$/src/components/calendar/calendar.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/dashboard-banner/dashboard-banner.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/dashboard-header/dashboard-header.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/dashboard-nav/dashboard-nav.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/icon-button/icon-button.tsx" afterDir="false" />
+    <list default="true" id="b5628d3d-60aa-4809-81ec-245702b93f4c" name="Changes" comment="feat: change structure of home component">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/file.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/globe.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/next.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vercel.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/window.svg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/daskboard/dashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/daskboard/dashboard.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/globals.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/dashboard-components/dashboard-header/dashboard-header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/dashboard-components/dashboard-header/dashboard-header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/dashboard-components/dashboard-team-member-pictures/dashboard-team-member-pictures.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/dashboard-components/dashboard-team-member-pictures/dashboard-team-member-pictures.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/profile/profile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/profile/profile.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/sidebar/sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/sidebar/sidebar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/task-components/task-board/draggable.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/task-components/task-board/draggable.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/task-components/task-board/droppable.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/task-components/task-board/droppable.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/task-components/task-board/task-board.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/task-components/task-board/task-board.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/task-components/task-header/task-header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/task-components/task-header/task-header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/task-modal/task-modal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/task-components/task-modal/task-modal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/colors.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/colors.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/contexts/project-context.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/contexts/project-context.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/models/member.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/models/member.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/models/project.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/models/project.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/models/task.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/models/task.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,10 +67,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components/task-components" />
+      <recent name="$PROJECT_DIR$/src/contexts" />
+      <recent name="$PROJECT_DIR$/src/components/dashboard" />
       <recent name="$PROJECT_DIR$/public" />
       <recent name="$PROJECT_DIR$/public/static" />
-      <recent name="$PROJECT_DIR$/public/images/backgrounds" />
-      <recent name="$PROJECT_DIR$/public/images" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -100,8 +100,130 @@
       <workItem from="1737722364826" duration="18978000" />
       <workItem from="1738056215136" duration="8218000" />
       <workItem from="1738154583155" duration="1561000" />
+      <workItem from="1738156174678" duration="24572000" />
+      <workItem from="1738247156673" duration="48138000" />
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="feat: add heading section skeleton">
+      <option name="closed" value="true" />
+      <created>1738160671887</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1738160671887</updated>
+    </task>
+    <task id="LOCAL-00003" summary="feat: ad icon button component">
+      <option name="closed" value="true" />
+      <created>1738160718485</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1738160718485</updated>
+    </task>
+    <task id="LOCAL-00004" summary="feat: add sidebar skeleton and sidebar context">
+      <option name="closed" value="true" />
+      <created>1738161404822</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1738161404822</updated>
+    </task>
+    <task id="LOCAL-00005" summary="feat: add structure for project logic">
+      <option name="closed" value="true" />
+      <created>1738161479407</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1738161479407</updated>
+    </task>
+    <task id="LOCAL-00006" summary="feat: add color constant">
+      <option name="closed" value="true" />
+      <created>1738510669489</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1738510669489</updated>
+    </task>
+    <task id="LOCAL-00007" summary="feat: improve dashboard structure">
+      <option name="closed" value="true" />
+      <created>1738510729430</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1738510729430</updated>
+    </task>
+    <task id="LOCAL-00008" summary="feat: improve taskboard logic">
+      <option name="closed" value="true" />
+      <created>1738510867120</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1738510867120</updated>
+    </task>
+    <task id="LOCAL-00009" summary="feat: add test data for project, task and member">
+      <option name="closed" value="true" />
+      <created>1738510909880</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1738510909880</updated>
+    </task>
+    <task id="LOCAL-00010" summary="feat: change sidebar structure">
+      <option name="closed" value="true" />
+      <created>1738510946762</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1738510946762</updated>
+    </task>
+    <task id="LOCAL-00011" summary="feat: change dashboard structure">
+      <option name="closed" value="true" />
+      <created>1738510980351</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1738510980351</updated>
+    </task>
+    <task id="LOCAL-00012" summary="style: add style for draggable and droppable">
+      <option name="closed" value="true" />
+      <created>1738511007168</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1738511007168</updated>
+    </task>
+    <task id="LOCAL-00013" summary="feat: add props for icon-button">
+      <option name="closed" value="true" />
+      <created>1738511057281</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1738511057281</updated>
+    </task>
+    <task id="LOCAL-00014" summary="feat: add project context">
+      <option name="closed" value="true" />
+      <created>1738511077736</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1738511077736</updated>
+    </task>
+    <task id="LOCAL-00015" summary="add: structure for profile component">
+      <option name="closed" value="true" />
+      <created>1738511107240</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1738511107240</updated>
+    </task>
+    <task id="LOCAL-00016" summary="feat: change structure of home component">
+      <option name="closed" value="true" />
+      <created>1738511142477</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1738511142477</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -110,6 +232,21 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Feature: implement drag-and-drop task board with task status management" />
     <MESSAGE value="Refactor: change structure for task management section" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor: change structure for task management section" />
+    <MESSAGE value="feat: add heading section skeleton" />
+    <MESSAGE value="feat: ad icon button component" />
+    <MESSAGE value="feat: add sidebar skeleton and sidebar context" />
+    <MESSAGE value="feat: add structure for project logic" />
+    <MESSAGE value="feat: add color constant" />
+    <MESSAGE value="feat: improve dashboard structure" />
+    <MESSAGE value="feat: improve taskboard logic" />
+    <MESSAGE value="feat: add test data for project, task and member" />
+    <MESSAGE value="feat: change sidebar structure" />
+    <MESSAGE value="feat: change dashboard structure" />
+    <MESSAGE value="style: add style for draggable and droppable" />
+    <MESSAGE value="feat: add props for icon-button" />
+    <MESSAGE value="feat: add project context" />
+    <MESSAGE value="add: structure for profile component" />
+    <MESSAGE value="feat: change structure of home component" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: change structure of home component" />
   </component>
 </project>
