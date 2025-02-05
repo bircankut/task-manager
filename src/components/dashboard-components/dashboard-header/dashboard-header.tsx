@@ -8,8 +8,9 @@ import { RiTimerLine } from "react-icons/ri";
 import { LuStar } from "react-icons/lu";
 import { HiOutlineDotsVertical } from "react-icons/hi";
 import { useSidebar } from "@/contexts/sidebar-context";
-
-import { DashboardTeamMemberPictures } from "@/components/dashboard-components/dashboard-team-member-pictures/dashboard-team-member-pictures";
+import {
+    DashboardTeamMemberPictures
+} from "@/components/dashboard-components/dashboard-team-member-pictures/dashboard-team-member-pictures";
 
 const DashboardHeader = () => {
   const { isSidebarExpanded, handleSidebarState } = useSidebar();
@@ -26,7 +27,7 @@ const DashboardHeader = () => {
       </div>
 
       <div className="h-full w-full flex justify-end items-center ">
-        <DashboardTeamMemberPictures />
+        <DashboardTeamMemberPictures/>
       </div>
 
       <div className="flex flex-row">

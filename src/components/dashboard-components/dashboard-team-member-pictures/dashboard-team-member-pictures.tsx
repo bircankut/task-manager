@@ -2,7 +2,14 @@
 import cns from "classnames";
 import { useMemo } from "react";
 import { useProject } from "@/contexts/project-context";
-import {COLORS} from "@/constants/colors";
+
+export const COLORS = [
+  "bg-indigo-100",
+  "bg-indigo-300",
+  "bg-indigo-500",
+  "bg-indigo-700",
+  "bg-indigo-900",
+];
 
 interface DashboardTeamMemberPictures {}
 
