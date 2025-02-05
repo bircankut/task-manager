@@ -1,5 +1,5 @@
 import { Task } from "./task";
-import { Member } from "./member";
+import { TeamMember } from "./member";
 
 export interface Project {
   id: number;
@@ -9,7 +9,7 @@ export interface Project {
   createdAt: string;
   dueDate: string;
   tasks: Task[];
-  team: Member[];
+  team: TeamMember[];
 }
 
 export const projects: Project[] = [
@@ -32,13 +32,25 @@ export const projects: Project[] = [
             picture: "",
             name: "Jane Smith",
             role: "Frontend Developer",
-            email: "john.doe@example.com",
+            assignedProjects: [
+              {
+                projectId: 1,
+                tasks: [1],
+              }
+            ],
+            email: "janny@example.com",
           },
           {
-            id: 1,
+            id: 2, // Changed ID to 2 to avoid duplication
             picture: "",
             name: "John Doe",
             role: "Backend Developer",
+            assignedProjects: [
+              {
+                projectId: 1,
+                tasks: [1],
+              }
+            ],
             email: "john.doe@example.com",
           },
         ],
@@ -51,11 +63,30 @@ export const projects: Project[] = [
     ],
     team: [
       {
-        id: 1,
+        id: 2, // Changed ID to 2 to avoid duplication
         picture: "",
         name: "John Doe",
+        assignedProjects: [
+          {
+            projectId: 1,
+            tasks: [1],
+          }
+        ],
         role: "Backend Developer",
         email: "john.doe@example.com",
+      },
+      {
+        id: 1,
+        picture: "",
+        name: "Jane Smith",
+        role: "Frontend Developer",
+        assignedProjects: [
+          {
+            projectId: 1,
+            tasks: [1],
+          }
+        ],
+        email: "janny@example.com",
       },
     ],
   },
@@ -78,13 +109,33 @@ export const projects: Project[] = [
             picture: "",
             name: "Jane Smith",
             role: "Frontend Developer",
-            email: "john.doe@example.com",
+            assignedProjects: [
+              {
+                projectId: 1,
+                tasks: [1],
+              },
+              {
+                projectId: 2,
+                tasks: [2],
+              }
+            ],
+            email: "janny@example.com",
           },
           {
-            id: 1,
+            id: 2, // Changed ID to 2 to avoid duplication
             picture: "",
             name: "John Doe",
             role: "Backend Developer",
+            assignedProjects: [
+              {
+                projectId: 1,
+                tasks: [1],
+              },
+              {
+                projectId: 2,
+                tasks: [2],
+              }
+            ],
             email: "john.doe@example.com",
           },
         ],
@@ -104,14 +155,34 @@ export const projects: Project[] = [
             id: 1,
             picture: "",
             name: "Jane Smith",
+            assignedProjects: [
+              {
+                projectId: 1,
+                tasks: [1],
+              },
+              {
+                projectId: 2,
+                tasks: [2, 3],
+              }
+            ],
             role: "Frontend Developer",
-            email: "john.doe@example.com",
+            email: "janny@example.com",
           },
           {
-            id: 1,
+            id: 2, // Changed ID to 2 to avoid duplication
             picture: "",
             name: "John Doe",
             role: "Backend Developer",
+            assignedProjects: [
+              {
+                projectId: 1,
+                tasks: [1],
+              },
+              {
+                projectId: 2,
+                tasks: [2, 3],
+              }
+            ],
             email: "john.doe@example.com",
           },
         ],
@@ -124,82 +195,63 @@ export const projects: Project[] = [
     ],
     team: [
       {
-        id: 2,
+        id: 1,
         picture: "",
         name: "Jane Smith",
         role: "Frontend Developer",
-        email: "jane.smith@example.com",
+        assignedProjects: [
+          {
+            projectId: 1,
+            tasks: [1],
+          },
+          {
+            projectId: 2,
+            tasks: [2, 3],
+          }
+        ],
+        email: "janny@example.com",
       },
       {
         id: 3,
         picture: "",
         name: "Alice Brown",
         role: "Full Stack Developer",
+        assignedProjects: [
+          {
+            projectId: 2,
+            tasks: [3],
+          }
+        ],
         email: "alice.brown@example.com",
       },
       {
         id: 4,
         picture: "",
-        name: "Janny",
+        name: "Janny Little",
         role: "Developer",
-        email: "jasmith@example.com",
+        assignedProjects: [
+          {
+            projectId: 2,
+            tasks: [3],
+          }
+        ],
+        email: "jan@example.com",
       },
       {
         id: 5,
         picture: "",
-        name: "Smith",
+        name: "Smith Jack",
         role: "Full Stack Developer",
-        email: "smith@example.com",
-      },
-      {
-        id: 6,
-        picture: "",
-        name: "Jane Smith",
-        role: "Frontend Developer",
-        email: "jane.smith@example.com",
-      },
-      {
-        id: 7,
-        picture: "",
-        name: "Alice Brown",
-        role: "Full Stack Developer",
-        email: "alice.brown@example.com",
-      },
-      {
-        id: 8,
-        picture: "",
-        name: "Janny",
-        role: "Developer",
-        email: "jasmith@example.com",
-      },
-      {
-        id: 9,
-        picture: "",
-        name: "Smith",
-        role: "Full Stack Developer",
-        email: "smith@example.com",
-      },
-      {
-        id: 10,
-        picture: "",
-        name: "Smith",
-        role: "Full Stack Developer",
-        email: "smith@example.com",
-      },
-      {
-        id: 11,
-        picture: "",
-        name: "Smith",
-        role: "Full Stack Developer",
-        email: "smith@example.com",
-      },
-      {
-        id: 12,
-        picture: "",
-        name: "Smith",
-        role: "Full Stack Developer",
-        email: "smith@example.com",
+        assignedProjects: [
+          {
+            projectId: 2,
+            tasks: [3],
+          }
+        ],
+        email: "jack@example.com",
       },
     ],
   },
 ];
+
+
