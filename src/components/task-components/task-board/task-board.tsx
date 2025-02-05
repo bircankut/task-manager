@@ -1,6 +1,6 @@
 "use client";
 
-import React, { ChangeEvent, useState } from "react";
+import { useState } from "react";
 import {
   DndContext,
   closestCenter,
@@ -19,9 +19,15 @@ import { RiAttachmentLine } from "react-icons/ri";
 import { LuMessagesSquare } from "react-icons/lu";
 import IconButton from "@/components/icon-button/icon-button";
 import { useProject } from "@/contexts/project-context";
-import { Project } from "@/entities/models/project";
 import cns from "classnames";
-import { COLORS } from "@/constants/colors";
+
+export const COLORS = [
+  "bg-indigo-100",
+  "bg-indigo-300",
+  "bg-indigo-500",
+  "bg-indigo-700",
+  "bg-indigo-900",
+];
 
 const sections = [
   { title: "In the List", status: "in-list" },
@@ -32,11 +38,13 @@ const sections = [
 const TaskBoard = () => {
   const { currentProject, updateTask, addTask, setCurrentProject } =
     useProject();
-  const [activeTaskId, setActiveTaskId] = useState<number>(0);
+  const [activeTaskId, setActiveTaskId] = useState<number | null>(null);
 
   const activeTask = currentProject.tasks.find(
     (task) => task.id === activeTaskId,
   );
+
+
 
   const sensors = useSensors(useSensor(PointerSensor));
 
@@ -49,21 +57,24 @@ const TaskBoard = () => {
 
     if (!over || active.id === over.id) return;
 
-    const targetTask = currentProject.tasks.find(
-      (task) => task.id === Number(active.id),
-    );
-    const targetDroppableAreaStatus = over.data.current?.status;
+    const targetTask = currentProject.tasks.find((task) => task.id === Number(active.id));
+    const targetDroppableAreaStatus = over?.data?.current?.status || over?.id;
 
     if (targetTask && targetDroppableAreaStatus) {
       updateTask(targetTask.id, { status: targetDroppableAreaStatus });
     }
 
-    setActiveTaskId(0);
+    setActiveTaskId(null);
   };
+
+  const handleDragOver = (event: any) => {
+    console.log("Dragging over:", event.over?.id);
+  };
+
   const createOnTaskAddHandler = (section: (typeof sections)[0]) => () => {
     addTask({
-      title: "",
-      description: "",
+      title: "title of the task",
+      description: "description for the task",
       tags: [""],
       attachments: [],
       assignedTo: [],
@@ -72,31 +83,31 @@ const TaskBoard = () => {
       createdAt: "",
       dueDate: "",
     });
-    console.log("Current tasks:", currentProject.tasks);
   };
   return (
     <DndContext
       sensors={sensors}
       collisionDetection={closestCenter}
       onDragStart={handleDragStart}
+      onDragOver={handleDragOver}
       onDragEnd={handleDragEnd}
     >
-      <div className="bg-gray-100 h-full py-5 grid grid-cols-3 gap-12 p-10">
-        {sections.map((section) => (
-          <div className="flex flex-col h-full">
-            <div className="">
+      <div className="bg-gray-100 h-full w-full grid grid-cols-3 gap-12 px-10 overflow-auto">
+        {sections.map((section, key) => (
+          <div key={key} className="flex flex-col h-full w-full">
+            <div className="sticky top-0 bg-gray-100 py-2">
               <TaskHeader
-                  key={section.status}
-                  title={section.title}
-                  taskCount={
-                    currentProject.tasks.filter(
-                        (task) => task.status === section.status,
-                    ).length
-                  }
-                  onAdd={createOnTaskAddHandler(section)}
+                key={section.status}
+                title={section.title}
+                taskCount={
+                  currentProject.tasks.filter(
+                    (task) => task.status === section.status,
+                  ).length
+                }
+                onAdd={createOnTaskAddHandler(section)}
               />
             </div>
-            <div className="overflow-y-auto">
+            <div className="h-full">
               <Droppable
                 key={section.status}
                 id={section.status}
@@ -104,9 +115,12 @@ const TaskBoard = () => {
               >
                 {currentProject.tasks
                   .filter((task) => task.status === section.status)
-                  .map((task) => (
-                    <Draggable key={task.id} id={String(task.id)}>
-                      <div className="flex flex-row justify-between items-center mb-4">
+                  .map((task, key) => (
+                    <Draggable key={String(task.id)} id={String(task.id)}>
+                      <div
+                        key={key}
+                        className="flex flex-row justify-between items-center mb-4"
+                      >
                         <h4 className="text-sm font-semibold text-gray-600">
                           {task.title}
                         </h4>{" "}
@@ -115,9 +129,12 @@ const TaskBoard = () => {
                       <div className="mb-4 text-sm text-gray-500">
                         {task.description}
                       </div>
-                      <div className="flex flex-row justify-between items-center border-b border-gray-200 mb-3 pb-3">
-                        {task.assignedTo.map((member) => (
-                          <div className="flex flex-row justify-between items-center">
+                      <div className="flex flex-row gap-5 items-center border-b border-gray-200 mb-3 pb-3">
+                        {task.assignedTo.map((member, key) => (
+                          <div
+                            key={key}
+                            className="flex flex-row"
+                          >
                             <div className="h-4 w-4 rounded-xl bg-indigo-300 mr-1">
                               {member.picture}
                             </div>
@@ -128,11 +145,12 @@ const TaskBoard = () => {
 
                       <div className="flex flex-row justify-between items-center">
                         <div>
-                          {task.tags.map((tag, index) => (
+                          {task.tags.map((tag, key) => (
                             <span
+                              key={key}
                               className={cns(
-                                COLORS[index % COLORS.length],
-                                " mr-2 p-1 rounded text-xs",
+                                COLORS[key % COLORS.length],
+                                "mr-2 p-1 rounded text-xs",
                               )}
                             >
                               {tag}
@@ -182,8 +200,11 @@ const TaskBoard = () => {
               {activeTask.description}
             </div>
             <div className="flex flex-row justify-between items-center border-b border-gray-200 mb-3 pb-3">
-              {activeTask.assignedTo.map((member) => (
-                <div className="flex flex-row justify-between items-center">
+              {activeTask.assignedTo.map((member, key) => (
+                <div
+                  key={key}
+                  className="flex flex-row justify-between items-center"
+                >
                   <div className="h-4 w-4 rounded-xl bg-indigo-300 mr-1">
                     {member.picture}
                   </div>
@@ -194,10 +215,11 @@ const TaskBoard = () => {
 
             <div className="flex flex-row justify-between items-center">
               <div>
-                {activeTask.tags.map((tag, index) => (
+                {activeTask.tags.map((tag, key) => (
                   <span
+                    key={key}
                     className={cns(
-                      COLORS[index % COLORS.length],
+                      COLORS[key % COLORS.length],
                       " mr-2 p-1 rounded text-xs",
                     )}
                   >

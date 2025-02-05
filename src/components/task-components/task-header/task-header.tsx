@@ -9,7 +9,7 @@ interface HeaderProps {
 
 const TaskHeader = ({ title, taskCount, onAdd }: HeaderProps) => {
   return (
-    <div className="flex items-center justify-between">
+    <div className="flex flex-row items-center justify-between">
       <h2 className="flex font-bold items-center justify-between">
         <span className="mr-2 text-stone-600"> {title} </span>
         <div className="flex justify-center items-center h-5 w-5 rounded-xl font-light text-sm text-indigo-400 bg-indigo-200">
