@@ -1,13 +1,17 @@
-import {HiOutlineDotsVertical} from "react-icons/hi";
-import IconButton from "@/components/icon-button/icon-button";
+"use client";
+
+import { useState } from "react";
+import { AddTaskPopUpProps } from "@/components/task-components/add-task-pop-up/add-task-pop-up";
+import { createPortal } from "react-dom";
 
 interface HeaderProps {
   title: string;
   taskCount: number;
-  onAdd: () => void;
+  status: string;
 }
 
-const TaskHeader = ({ title, taskCount, onAdd }: HeaderProps) => {
+const TaskHeader = ({ title, taskCount, status }: HeaderProps) => {
+  const [isPopUpOpen, setIsPopUpOpen] = useState(false);
   return (
     <div className="flex flex-row items-center justify-between">
       <h2 className="flex font-bold items-center justify-between">
@@ -17,11 +21,19 @@ const TaskHeader = ({ title, taskCount, onAdd }: HeaderProps) => {
         </div>
       </h2>
       <button
-        onClick={onAdd}
-        className="flex justify-center items-center text-stone-600 rounded border border-solid border-stone-600 h-6 w-6"
+        onClick={() => setIsPopUpOpen(true)}
+        className="flex justify-center items-center text-stone-600 rounded relative border border-solid border-stone-600 h-6 w-6"
       >
         +
       </button>
+      {isPopUpOpen &&
+        createPortal(
+          <AddTaskPopUpProps
+            status={status}
+            onClose={() => setIsPopUpOpen(false)}
+          />,
+          document.body,
+        )}
     </div>
   );
 };

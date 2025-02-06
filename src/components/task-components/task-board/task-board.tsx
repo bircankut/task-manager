@@ -71,19 +71,6 @@ const TaskBoard = () => {
     console.log("Dragging over:", event.over?.id);
   };
 
-  const createOnTaskAddHandler = (section: (typeof sections)[0]) => () => {
-    addTask({
-      title: "title of the task",
-      description: "description for the task",
-      tags: [""],
-      attachments: [],
-      assignedTo: [],
-      discussions: [],
-      status: section.status,
-      createdAt: "",
-      dueDate: "",
-    });
-  };
   return (
     <DndContext
       sensors={sensors}
@@ -104,7 +91,7 @@ const TaskBoard = () => {
                     (task) => task.status === section.status,
                   ).length
                 }
-                onAdd={createOnTaskAddHandler(section)}
+                status={section.status}
               />
             </div>
             <div className="h-full">
