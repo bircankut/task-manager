@@ -6,11 +6,10 @@ export interface Task {
   description: string;
   status: string;
   assignedTo: TeamMember[];
-  tags: String[];
-  discussions: String[];
+  tags: string[];
+  discussions: string[];
   attachments: Attachment[];
   createdAt: string;
-  dueDate: string;
 }
 
 export interface Attachment {

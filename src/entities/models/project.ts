@@ -29,7 +29,7 @@ export const projects: Project[] = [
         assignedTo: [
           {
             id: 1,
-            picture: "",
+            picture: "/p-picture.jpg",
             name: "Jane Smith",
             role: "Frontend Developer",
             assignedProjects: [
@@ -41,8 +41,8 @@ export const projects: Project[] = [
             email: "janny@example.com",
           },
           {
-            id: 2, // Changed ID to 2 to avoid duplication
-            picture: "",
+            id: 2,
+            picture: "/p-picture2.jpg",
             name: "John Doe",
             role: "Backend Developer",
             assignedProjects: [
@@ -58,13 +58,12 @@ export const projects: Project[] = [
         attachments: [],
         discussions: ["About colors"],
         createdAt: "2025-01-01T12:00:00.000Z",
-        dueDate: "2025-01-05T23:59:59.000Z",
       },
     ],
     team: [
       {
-        id: 2, // Changed ID to 2 to avoid duplication
-        picture: "",
+        id: 2,
+        picture: "/p-picture2.jpg",
         name: "John Doe",
         assignedProjects: [
           {
@@ -77,7 +76,7 @@ export const projects: Project[] = [
       },
       {
         id: 1,
-        picture: "",
+        picture: "/p-picture.jpg",
         name: "Jane Smith",
         role: "Frontend Developer",
         assignedProjects: [
@@ -106,7 +105,7 @@ export const projects: Project[] = [
         assignedTo: [
           {
             id: 1,
-            picture: "",
+            picture: "/p-picture.jpg",
             name: "Jane Smith",
             role: "Frontend Developer",
             assignedProjects: [
@@ -122,8 +121,8 @@ export const projects: Project[] = [
             email: "janny@example.com",
           },
           {
-            id: 2, // Changed ID to 2 to avoid duplication
-            picture: "",
+            id: 2,
+            picture: "/p-picture2.jpg",
             name: "John Doe",
             role: "Backend Developer",
             assignedProjects: [
@@ -143,7 +142,6 @@ export const projects: Project[] = [
         attachments: [],
         discussions: ["About colors"],
         createdAt: "2025-02-10T09:30:00.000Z",
-        dueDate: "2025-02-20T23:59:59.000Z",
       },
       {
         id: 3,
@@ -153,7 +151,7 @@ export const projects: Project[] = [
         assignedTo: [
           {
             id: 1,
-            picture: "",
+            picture: "/p-picture.jpg",
             name: "Jane Smith",
             assignedProjects: [
               {
@@ -169,8 +167,8 @@ export const projects: Project[] = [
             email: "janny@example.com",
           },
           {
-            id: 2, // Changed ID to 2 to avoid duplication
-            picture: "",
+            id: 2,
+            picture: "/p-picture2.jpg",
             name: "John Doe",
             role: "Backend Developer",
             assignedProjects: [
@@ -190,13 +188,12 @@ export const projects: Project[] = [
         attachments: [],
         discussions: ["About colors"],
         createdAt: "2025-03-01T10:00:00.000Z",
-        dueDate: "2025-03-15T23:59:59.000Z",
       },
     ],
     team: [
       {
         id: 1,
-        picture: "",
+        picture: "/p-picture.jpg",
         name: "Jane Smith",
         role: "Frontend Developer",
         assignedProjects: [
@@ -213,7 +210,7 @@ export const projects: Project[] = [
       },
       {
         id: 3,
-        picture: "",
+        picture: "/p-picture3.jpg",
         name: "Alice Brown",
         role: "Full Stack Developer",
         assignedProjects: [
@@ -226,7 +223,7 @@ export const projects: Project[] = [
       },
       {
         id: 4,
-        picture: "",
+        picture: "/p-picture4.jpg",
         name: "Janny Little",
         role: "Developer",
         assignedProjects: [
@@ -239,7 +236,7 @@ export const projects: Project[] = [
       },
       {
         id: 5,
-        picture: "",
+        picture: "/p-picture5.jpg",
         name: "Smith Jack",
         role: "Full Stack Developer",
         assignedProjects: [
