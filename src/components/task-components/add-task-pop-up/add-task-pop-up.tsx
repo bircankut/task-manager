@@ -1,12 +1,14 @@
 "use client";
 
-import { ChangeEvent, useState } from "react";
-import { IoCloseCircleOutline } from "react-icons/io5";
+import React, { ChangeEvent, useState } from "react";
+import { IoAddCircleOutline, IoCloseCircleOutline } from "react-icons/io5";
 import { useProject } from "@/contexts/project-context";
-import "react-tippy/dist/tippy.css";
 import cns from "classnames";
 import { COLORS } from "@/components/task-components/task-board/task-board";
 import { TeamMember } from "@/entities/models/member";
+import IconButton from "@/components/icon-button/icon-button";
+import { TaskInput } from "@/components/task-input/task-input";
+import { TaskTextarea } from "@/components/task-textarea/task-textarea";
 
 interface AddTaskPopUpProps {
   onClose: () => void;
@@ -42,7 +44,7 @@ const AddTaskPopUpProps = ({ onClose, status }: AddTaskPopUpProps) => {
     }));
   };
 
-  const addTag = () => {
+  const addTag = (tag: string) => {
     const newTag = tagInput.trim();
     if (newTag && !task.tags.includes(newTag)) {
       setTask((prevTask) => ({
@@ -51,6 +53,13 @@ const AddTaskPopUpProps = ({ onClose, status }: AddTaskPopUpProps) => {
       }));
       setTagInput("");
     }
+  };
+
+  const removeTag = (tagToRemove: string) => {
+    setTask((prev) => ({
+      ...prev,
+      tags: prev.tags.filter((tag) => tag !== tagToRemove),
+    }));
   };
 
   const assignMember = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -70,6 +79,13 @@ const AddTaskPopUpProps = ({ onClose, status }: AddTaskPopUpProps) => {
     }
   };
 
+  const removeMember = (memberId: number) => {
+    setTask((prev) => ({
+      ...prev,
+      assignedTo: prev.assignedTo.filter((member) => member.id !== memberId),
+    }));
+  };
+
   const handleSubmit = () => {
     if (!task.title.trim()) return;
 
@@ -82,7 +98,6 @@ const AddTaskPopUpProps = ({ onClose, status }: AddTaskPopUpProps) => {
       discussions: [],
       status: status,
       createdAt: new Date().toISOString(),
-      dueDate: task.dueDate,
     });
 
     onClose();
@@ -92,116 +107,116 @@ const AddTaskPopUpProps = ({ onClose, status }: AddTaskPopUpProps) => {
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
       <div className="flex flex-col bg-white w-2/5 min-h-40 shadow-2xl rounded-xl p-6 gap-4">
         <div className="flex justify-end">
-          <button onClick={onClose}>
-            <IoCloseCircleOutline
-              size={28}
-              className="text-gray-500 hover:text-gray-700"
-            />
-          </button>
+          <IconButton
+            onClick={onClose}
+            size={28}
+            className="text-gray-500 hover:text-gray-700"
+            icon={IoCloseCircleOutline}
+          />
         </div>
 
         <h3 className="text-lg text-gray-600 font-semibold">Add New Task</h3>
 
-        <div className="flex flex-col">
-          <label className="text-sm font-semibold mb-1 text-gray-600">
-            Task Title
-          </label>
-          <input
-            type="text"
-            name="title"
-            value={task.title}
-            onChange={handleChange}
-            placeholder="Enter task title"
-            className="border border-stone-300 rounded-md p-2"
-          />
-        </div>
+        <TaskInput
+          label="Task Title"
+          type="text"
+          name="title"
+          value={task.title}
+          placeholder="Enter task title"
+          onChange={handleChange}
+        />
 
-        <div className="flex flex-col">
-          <label className="text-sm font-semibold mb-1 text-gray-600">
-            Task Description
-          </label>
-          <textarea
-            name="description"
-            value={task.description}
-            onChange={handleChange}
-            placeholder="Enter task description"
-            className="border border-stone-300 rounded-md p-2"
-          />
-        </div>
+        <TaskTextarea
+          label="Task Description"
+          name="description"
+          value={task.description}
+          placeholder="Enter task description"
+          onChange={handleChange}
+        />
 
-        <div className="flex flex-col">
-          <label className="text-sm font-semibold mb-1 text-gray-600">
-            Due Date
-          </label>
-          <input
-            type="date"
-            name="dueDate"
-            value={task.dueDate}
-            onChange={handleChange}
-            className="border border-stone-300 rounded-md p-2 text-gray-400"
-          />
-        </div>
+        <div className="flex flex-row gap-8">
+          <section className="w-1/2 flex flex-col">
+            <div className="flex flex-row relative">
+              <TaskInput
+                label="Tags"
+                type="text"
+                name="tags"
+                value={tagInput}
+                onChange={handleChange}
+                className="min-w-60"
+              ></TaskInput>
 
-        <div className="flex flex-col">
-          <label className="text-sm font-semibold mb-1 text-gray-600">
-            Tags
-          </label>
-          <div className="flex flex-row justify-between gap-2">
-            <input
-              type="text"
-              name="tag"
-              value={tagInput}
-              onChange={(e) => setTagInput(e.target.value)}
-              className="w-5/6 border border-stone-300 rounded-md p-2 text-gray-400"
-            />
-            <button className="bg-indigo-300 p-2 rounded-md" onClick={addTag}>
-              Add Tag
-            </button>
-          </div>
-          <div className="flex flex-row py-3">
-            {task.tags.map((tag, key) => (
-              <span
-                key={key}
-                className={cns(
-                  COLORS[key % COLORS.length],
-                  "mr-2 p-1 rounded text-xs",
-                )}
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        <div className="flex flex-col">
-          <label className="text-sm font-semibold mb-1 text-gray-600">
-            Assigned To
-          </label>
-
-          <select
-            name="assignedTo"
-            value={task.assignedTo.length > 0 ? task.assignedTo[0].id : ""}
-            onChange={assignMember}
-            className="border border-stone-300 rounded-md p-2"
-          >
-            <option value="">-- Please choose a member --</option>
-            {currentProject.team.map((member) => (
-              <option key={member.id} value={member.id}>
-                {member.name}
-              </option>
-            ))}
-          </select>
-
-          <div className="flex flex-row py-3">
-            {task.assignedTo.map((member, key) => (
-              <div key={key} className="flex flex-row mr-4">
-                <div className="h-4 w-4 rounded-xl bg-indigo-300 mr-1">
-                  {member.picture}
+              <IconButton
+                onClick={() => addTag(tagInput)}
+                size={28}
+                className="text-gray-500 hover:text-gray-700 absolute top-8 right-0"
+                icon={IoAddCircleOutline}
+              />
+            </div>
+            <div className="flex flex-wrap py-3 gap-1.5">
+              {task.tags.map((tag, key) => (
+                <div
+                  key={key}
+                  className={cns(
+                    COLORS[key % COLORS.length],
+                    "flex  flex-row p-1.5 rounded-md mr-3",
+                  )}
+                >
+                  <span key={key} className="text-xs flex items-center mr-1">
+                    {tag}
+                  </span>
+                  <IconButton
+                    onClick={() => removeTag(tag)}
+                    size={20}
+                    className="text-gray-500 hover:text-gray-700"
+                    icon={IoCloseCircleOutline}
+                  />
                 </div>
-                <span className="text-xs">{member.name}</span>
+              ))}
+            </div>
+          </section>
+          <section className="w-1/2 flex flex-col">
+            <div className="flex flex-col">
+              <label className="text-sm font-semibold mb-1 text-gray-600">
+                Assigned To
+              </label>
+              <select
+                name="assignedTo"
+                onChange={assignMember}
+                className="border border-stone-300 rounded-md p-2"
+              >
+                <option value="">-- Please choose a member --</option>
+                {currentProject.team.map((member) => (
+                  <option key={member.id} value={member.id}>
+                    {member.name}
+                  </option>
+                ))}
+              </select>
+              <div className="flex flex-wrap gap-1.5 py-3">
+                {task.assignedTo.map((member) => (
+                  <div
+                    key={member.id}
+                    className="flex flex-row mr-4 border border-stone-400 p-2 rounded-md"
+                  >
+                    <div className="h-4 w-4 rounded-xl bg-indigo-300 mr-1">
+                      <img
+                          src={member.picture}
+                          alt={member.name}
+                          className="h-full w-full object-cover rounded-full"
+                      />
+                    </div>
+                    <span className="text-xs mr-1">{member.name}</span>
+                    <IconButton
+                      onClick={() => removeMember(member.id)}
+                      size={20}
+                      className="text-gray-500 hover:text-gray-700"
+                      icon={IoCloseCircleOutline}
+                    />
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
+            </div>
+          </section>
         </div>
 
         <div className="flex justify-end gap-12 mt-4">
