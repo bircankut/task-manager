@@ -1,11 +1,12 @@
-import { ComponentType, ReactNode } from "react";
+import React, { ComponentType, ReactNode } from "react";
 
 interface IconButtonProps {
+  onPointerDown?: (e: React.PointerEvent<HTMLButtonElement>) => void;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   children?: ReactNode;
   disabled?: boolean;
   icon: ComponentType<{ size?: string | number; color?: string }>;
   className?: string;
-  onClick?: () => void;
   size?: string | number;
   color?: string;
 }
@@ -16,12 +17,14 @@ const IconButton = ({
   icon: IconComponent,
   className,
   onClick,
-    size = 24,
-    color= "#57534E",
+  size = 24,
+  color = "#57534E",
+  onPointerDown,
   ...props
 }: IconButtonProps) => {
   return (
     <button
+      onPointerDown={onPointerDown}
       onClick={onClick}
       {...props}
       disabled={disabled}
