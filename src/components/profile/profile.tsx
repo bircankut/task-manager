@@ -5,8 +5,9 @@ import IconButton from "@/components/icon-button/icon-button";
 import { LuChevronsLeft, LuChevronsRight, LuMaximize2 } from "react-icons/lu";
 import { useProject } from "@/contexts/project-context";
 import { projects } from "@/entities/models/project";
-import { Chart } from "react-chartjs-2";
 import WeekHoursChart from "@/components/time-chart/time-chart";
+import cns from "classnames";
+import { COLORS } from "@/components/dashboard-components/dashboard-team-member-pictures/dashboard-team-member-pictures";
 
 const Profile = () => {
   const { currentUser, getTasksByTeamMember } = useProject();
@@ -27,8 +28,11 @@ const Profile = () => {
                 Your resent project work
               </h5>
               <div className="flex flex-row overflow-x-scroll py-5 ">
-                {memberTasks.map((task) => (
-                  <div className="flex flex-col h-24 min-w-28 bg-white rounded-xl relative mr-3 pt-5 pb-3 px-2 shadow-md">
+                {memberTasks.map((task, key) => (
+                  <div
+                    key={key}
+                    className="flex flex-col h-24 min-w-28 bg-white rounded-xl relative mr-3 pt-5 pb-3 px-2 shadow-md"
+                  >
                     <div className="h-7 w-7 absolute bottom-20 left-2 bg-white shadow-md rounded-3xl text-xs">
                       logo
                     </div>
@@ -36,11 +40,35 @@ const Profile = () => {
                       {task.title}
                     </span>
                     <div className="flex flex-row justify-between text-gray-600">
-                      <div className="flex flex-col">
-                        <span className="text-[10px]">Assigned</span>
-                        <div className="h-5 w-5 bg-indigo-300 rounded-xl">
-                          c
-                        </div>
+                      <div className="flex flex-col ">
+                        <span className="text-[10px] mb-3">Assigned</span>
+                        <ul className="relative flex items-center">
+                          {task.assignedTo.slice(0, 2).map((member, index) => (
+                            <li
+                              key={member.id}
+                              className={cns(
+                                COLORS[index % COLORS.length],
+                                "h-5 w-5 rounded-full border border-white flex items-center justify-center text-white absolute",
+                              )}
+                              style={{ left: `${index * 10}px` }}
+                            >
+                              <img
+                                src={member.picture}
+                                alt={member.name}
+                                className="h-full w-full object-cover rounded-full"
+                              />
+                            </li>
+                          ))}
+
+                          {task.assignedTo.length > 2 && (
+                            <li
+                              className="h-5 w-5 rounded-full border border-white bg-gray-500 text-white text-xs flex items-center justify-center absolute"
+                              style={{ left: `${2 * 10}px` }}
+                            >
+                              +{task.assignedTo.length - 2}
+                            </li>
+                          )}
+                        </ul>
                       </div>
                       <div className="flex flex-col">
                         <span className="text-[10px]">Progress</span>
