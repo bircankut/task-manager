@@ -37,7 +37,11 @@ const DashboardTeamMemberPictures = ({}: DashboardTeamMemberPictures) => {
           )}
           style={{ right: `${index * 20}px` }}
         >
-          {member.id}
+          <img
+            src={member.picture}
+            alt={member.name}
+            className="h-full w-full object-cover rounded-full"
+          />
         </li>
       ))}
 
