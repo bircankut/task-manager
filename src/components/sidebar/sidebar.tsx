@@ -10,12 +10,12 @@ import { LuFolder } from "react-icons/lu";
 import { LuSettings } from "react-icons/lu";
 import { TbLogout } from "react-icons/tb";
 import { LuCircleHelp } from "react-icons/lu";
-import { useState } from "react";
+import React, { useState } from "react";
 import { projects } from "@/entities/models/project";
 import { useProject } from "@/contexts/project-context";
 
 const Sidebar = () => {
-  const { currentProject, setCurrentProject } = useProject();
+  const { currentProject, setCurrentProject, currentUser } = useProject();
   const { isSidebarExpanded } = useSidebar();
   const [openSection, setOpenSection] = useState("home");
 
@@ -31,7 +31,13 @@ const Sidebar = () => {
     >
       <div className="h-screen w-20 p-3 shrink-0">
         <div className="h-full w-full flex flex-col justify-between items-center py-2 bg-indigo-100 rounded-md">
-          <div className="h-12 w-10 bg-indigo-600 rounded-xl mb-10" />
+          <div className="h-12 w-10 bg-indigo-600 rounded-xl mb-10">
+            <img
+              src={currentUser.picture}
+              alt={currentUser.name}
+              className="h-full w-full object-cover rounded-xl"
+            />
+          </div>
           <div className="h-2/3 flex flex-col justify-start items-center gap-8 pt-6 pb-10">
             <IconButton
               icon={FiHome}
