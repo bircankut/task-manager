@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import {
   DndContext,
   closestCenter,
@@ -20,6 +20,8 @@ import { LuMessagesSquare } from "react-icons/lu";
 import IconButton from "@/components/icon-button/icon-button";
 import { useProject } from "@/contexts/project-context";
 import cns from "classnames";
+import { createPortal } from "react-dom";
+import { EditTask } from "@/components/task-components/edit-task/edit-task";
 
 export const COLORS = [
   "bg-indigo-100",
@@ -39,12 +41,11 @@ const TaskBoard = () => {
   const { currentProject, updateTask, addTask, setCurrentProject } =
     useProject();
   const [activeTaskId, setActiveTaskId] = useState<number | null>(null);
+  const [openTaskId, setOpenTaskId] = useState<number | null>(null);
 
   const activeTask = currentProject.tasks.find(
     (task) => task.id === activeTaskId,
   );
-
-
 
   const sensors = useSensors(useSensor(PointerSensor));
 
@@ -57,7 +58,9 @@ const TaskBoard = () => {
 
     if (!over || active.id === over.id) return;
 
-    const targetTask = currentProject.tasks.find((task) => task.id === Number(active.id));
+    const targetTask = currentProject.tasks.find(
+      (task) => task.id === Number(active.id),
+    );
     const targetDroppableAreaStatus = over?.data?.current?.status || over?.id;
 
     if (targetTask && targetDroppableAreaStatus) {
@@ -69,6 +72,14 @@ const TaskBoard = () => {
 
   const handleDragOver = (event: any) => {
     console.log("Dragging over:", event.over?.id);
+  };
+
+  const handlePointerDown = (e: React.PointerEvent<HTMLElement>) => {
+    e.stopPropagation();
+  };
+
+  const toggleTaskEdit = (taskId: number) => {
+    setOpenTaskId((prev) => (prev === taskId ? null : taskId));
   };
 
   return (
@@ -108,24 +119,40 @@ const TaskBoard = () => {
                         key={key}
                         className="flex flex-row justify-between items-center mb-4"
                       >
-                        <h4 className="text-sm font-semibold text-gray-600">
+                        <h4 className="h-max text-sm font-semibold text-gray-600 break-words">
                           {task.title}
                         </h4>{" "}
-                        <IconButton icon={HiOutlineDotsVertical}></IconButton>
+                        <IconButton
+                          onPointerDown={handlePointerDown}
+                          onClick={() => toggleTaskEdit(task.id)}
+                          icon={HiOutlineDotsVertical}
+                        />
+                        {openTaskId === task.id &&
+                          createPortal(
+                            <EditTask
+                              task={task}
+                              onPointerDown={handlePointerDown}
+                              onClose={() => setOpenTaskId(null)}
+                            />,
+                            document.body,
+                          )}
                       </div>
-                      <div className="mb-4 text-sm text-gray-500">
+                      <div className=" mb-4 text-sm text-gray-500 break-words">
                         {task.description}
                       </div>
                       <div className="flex flex-row gap-5 items-center border-b border-gray-200 mb-3 pb-3">
                         {task.assignedTo.map((member, key) => (
-                          <div
-                            key={key}
-                            className="flex flex-row"
-                          >
+                          <div key={key} className="flex flex-row">
                             <div className="h-4 w-4 rounded-xl bg-indigo-300 mr-1">
-                              {member.picture}
+                              <img
+                                src={member.picture}
+                                alt={member.name}
+                                className="h-full w-full object-cover rounded-full"
+                              />
                             </div>
-                            <span className="text-xs">{member.name}</span>
+                            <span className="text-xs text-gray-500">
+                              {member.name}
+                            </span>
                           </div>
                         ))}
                       </div>
@@ -137,7 +164,7 @@ const TaskBoard = () => {
                               key={key}
                               className={cns(
                                 COLORS[key % COLORS.length],
-                                "mr-2 p-1 rounded text-xs",
+                                "mr-2 p-1 rounded text-xs text-gray-500",
                               )}
                             >
                               {tag}
@@ -151,7 +178,7 @@ const TaskBoard = () => {
                               size={18}
                               color={"#6e6d6b"}
                             ></IconButton>
-                            <span className="text-xs font-semibold ml-1">
+                            <span className="text-xs text-gray-500 font-semibold ml-1">
                               {task.discussions.length}
                             </span>
                           </div>
@@ -161,7 +188,7 @@ const TaskBoard = () => {
                               size={18}
                               color={"#6e6d6b"}
                             ></IconButton>
-                            <span className="text-xs font-semibold ml-1">
+                            <span className="text-xs text-gray-500 font-semibold ml-1">
                               {task.discussions.length}
                             </span>
                           </div>
@@ -178,24 +205,25 @@ const TaskBoard = () => {
         {activeTask ? (
           <div>
             <div className="flex flex-row justify-between items-center mb-4">
-              <h4 className="text-sm font-semibold text-gray-600">
+              <h4 className="text-sm font-semibold text-gray-600 break-words">
                 {activeTask.title}
               </h4>{" "}
               <IconButton icon={HiOutlineDotsVertical}></IconButton>
             </div>
-            <div className="mb-4 text-sm text-gray-500">
+            <div className="mb-4 text-sm text-gray-500 break-words">
               {activeTask.description}
             </div>
-            <div className="flex flex-row justify-between items-center border-b border-gray-200 mb-3 pb-3">
+            <div className="flex flex-row gap-5 items-center border-b border-gray-200 mb-3 pb-3">
               {activeTask.assignedTo.map((member, key) => (
-                <div
-                  key={key}
-                  className="flex flex-row justify-between items-center"
-                >
+                <div key={key} className="flex flex-row">
                   <div className="h-4 w-4 rounded-xl bg-indigo-300 mr-1">
-                    {member.picture}
+                    <img
+                      src={member.picture}
+                      alt={member.name}
+                      className="h-full w-full object-cover rounded-full"
+                    />
                   </div>
-                  <span className="text-xs">{member.name}</span>
+                  <span className="text-xs text-gray-500">{member.name}</span>
                 </div>
               ))}
             </div>
@@ -207,7 +235,7 @@ const TaskBoard = () => {
                     key={key}
                     className={cns(
                       COLORS[key % COLORS.length],
-                      " mr-2 p-1 rounded text-xs",
+                      " mr-2 p-1 rounded text-gray-500 text-xs",
                     )}
                   >
                     {tag}
@@ -221,7 +249,7 @@ const TaskBoard = () => {
                     size={18}
                     color={"#6e6d6b"}
                   ></IconButton>
-                  <span className="text-xs font-semibold">
+                  <span className="text-xs text-gray-500 font-semibold ml-1">
                     {activeTask.discussions.length}
                   </span>
                 </div>
@@ -231,7 +259,7 @@ const TaskBoard = () => {
                     size={18}
                     color={"#6e6d6b"}
                   ></IconButton>
-                  <span className="text-xs font-semibold">
+                  <span className="text-xs text-gray-500 font-semibold ml-1">
                     {activeTask.discussions.length}
                   </span>
                 </div>
