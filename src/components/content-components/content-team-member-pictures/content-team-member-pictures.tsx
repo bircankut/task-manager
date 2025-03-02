@@ -11,12 +11,12 @@ export const COLORS = [
   "bg-indigo-900",
 ];
 
-interface DashboardTeamMemberPictures {}
+interface ContentTeamMemberPictures {}
 
 const MAX_TEAM_MEMBER_BADGE_DISPLAY_COUNT = 11;
 
 
-const DashboardTeamMemberPictures = ({}: DashboardTeamMemberPictures) => {
+const ContentTeamMemberPictures = ({}: ContentTeamMemberPictures) => {
   const { currentProject } = useProject();
 
   const teamMemberDisplayList = useMemo(
@@ -62,4 +62,4 @@ const DashboardTeamMemberPictures = ({}: DashboardTeamMemberPictures) => {
   );
 };
 
-export { DashboardTeamMemberPictures };
+export { ContentTeamMemberPictures };
