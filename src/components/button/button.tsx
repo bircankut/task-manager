@@ -2,7 +2,8 @@ import React, { ReactNode } from "react";
 import cns from "classnames";
 
 interface ButtonProps {
-  variant?: "background" | "border"; // Added variant support
+  type?: "button" | "submit" | "reset";
+  variant?: "background" | "border";
   onPointerDown?: (e: React.PointerEvent<HTMLButtonElement>) => void;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   children?: ReactNode;
@@ -11,6 +12,7 @@ interface ButtonProps {
 }
 
 const Button = ({
+  type,
   variant = "background",
   children,
   disabled = false,
@@ -21,13 +23,14 @@ const Button = ({
 }: ButtonProps) => {
   return (
     <button
+      type={type}
       onPointerDown={onPointerDown}
       onClick={onClick}
       {...props}
       disabled={disabled}
       aria-disabled={disabled}
       className={cns(
-        "rounded-md transition-all duration-200",
+        "h-12 rounded-xl transition-all duration-200 p-2 font-semibold",
         {
           "bg-indigo-600 text-white hover:bg-indigo-700 disabled:bg-gray-300 disabled:text-gray-500":
             variant === "background",
