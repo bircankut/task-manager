@@ -4,7 +4,7 @@ import { IoAddCircleOutline } from "react-icons/io5";
 import { Task } from "@/entities/models/task";
 import { useProject } from "@/contexts/project-context";
 import cns from "classnames";
-import { COLORS } from "@/components/task-components/task-board/task-board";
+import { COLORS } from "@/components/dashboard-components/dashboard/dashboard";
 import IconButton from "@/components/icon-button/icon-button";
 import { TaskInput } from "@/components/task-input/task-input";
 import { TaskTextarea } from "@/components/task-textarea/task-textarea";
@@ -19,6 +19,7 @@ const EditTask = ({ onClose, onPointerDown, task }: EditTaskProps) => {
   const { updateTask, currentProject } = useProject();
   const [editedTask, setEditedTask] = useState({ ...task });
   const [tagInput, setTagInput] = useState("");
+  const [error, setError] = useState("");
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>,
@@ -79,7 +80,10 @@ const EditTask = ({ onClose, onPointerDown, task }: EditTaskProps) => {
   };
 
   const handleSubmit = () => {
-    if (!editedTask.title.trim()) return;
+    if (!editedTask.title.trim() || !editedTask.description.trim()) {
+      setError("Task title and description fields are required");
+      return;
+    }
     updateTask(task.id, editedTask);
     onClose();
   };
@@ -115,6 +119,8 @@ const EditTask = ({ onClose, onPointerDown, task }: EditTaskProps) => {
           value={editedTask.description}
           onChange={handleChange}
         />
+
+        {error && <p className="text-red-500 text-sm text-center ">{error}</p>}
 
         <div className="flex flex-row gap-8">
           <section className="w-1/2 flex flex-col">
@@ -182,9 +188,9 @@ const EditTask = ({ onClose, onPointerDown, task }: EditTaskProps) => {
                   >
                     <div className="h-4 w-4 rounded-xl bg-indigo-300 mr-1">
                       <img
-                          src={member.picture}
-                          alt={member.name}
-                          className="h-full w-full object-cover rounded-full"
+                        src={member.picture}
+                        alt={member.name}
+                        className="h-full w-full object-cover rounded-full"
                       />
                     </div>
                     <span className="text-xs mr-1">{member.name}</span>

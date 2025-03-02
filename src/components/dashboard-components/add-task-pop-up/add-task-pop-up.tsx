@@ -4,7 +4,7 @@ import React, { ChangeEvent, useState } from "react";
 import { IoAddCircleOutline, IoCloseCircleOutline } from "react-icons/io5";
 import { useProject } from "@/contexts/project-context";
 import cns from "classnames";
-import { COLORS } from "@/components/task-components/task-board/task-board";
+import { COLORS } from "@/components/dashboard-components/dashboard/dashboard";
 import { TeamMember } from "@/entities/models/member";
 import IconButton from "@/components/icon-button/icon-button";
 import { TaskInput } from "@/components/task-input/task-input";
@@ -17,6 +17,7 @@ interface AddTaskPopUpProps {
 
 const AddTaskPopUpProps = ({ onClose, status }: AddTaskPopUpProps) => {
   const { currentProject, addTask } = useProject();
+  const [error, setError] = useState("");
   const [task, setTask] = useState<{
     title: string;
     description: string;
@@ -38,10 +39,14 @@ const AddTaskPopUpProps = ({ onClose, status }: AddTaskPopUpProps) => {
   ) => {
     const { name, value } = e.target;
 
-    setTask((prevTask) => ({
-      ...prevTask,
-      [name]: name === "tags" ? value.split(",") : value,
-    }));
+    if (name === "tags") {
+      setTagInput(value);
+    } else {
+      setTask((prevTask) => ({
+        ...prevTask,
+        [name]: value,
+      }));
+    }
   };
 
   const addTag = (tag: string) => {
@@ -87,7 +92,12 @@ const AddTaskPopUpProps = ({ onClose, status }: AddTaskPopUpProps) => {
   };
 
   const handleSubmit = () => {
-    if (!task.title.trim()) return;
+    setError("");
+
+    if (!task.title.trim() || !task.description.trim()) {
+      setError("Task title and description fields are required");
+      return;
+    }
 
     addTask({
       title: task.title,
@@ -134,8 +144,10 @@ const AddTaskPopUpProps = ({ onClose, status }: AddTaskPopUpProps) => {
           onChange={handleChange}
         />
 
-        <div className="flex flex-row gap-8">
-          <section className="w-1/2 flex flex-col">
+        {error && <p className="text-red-500 text-sm text-center ">{error}</p>}
+
+        <div className="flex flex-row gap-8 justify-between">
+          <section className="flex flex-col">
             <div className="flex flex-row relative">
               <TaskInput
                 label="Tags"
@@ -143,13 +155,13 @@ const AddTaskPopUpProps = ({ onClose, status }: AddTaskPopUpProps) => {
                 name="tags"
                 value={tagInput}
                 onChange={handleChange}
-                className="min-w-60"
-              ></TaskInput>
+                className="min-w-72"
+              />
 
               <IconButton
                 onClick={() => addTag(tagInput)}
                 size={28}
-                className="text-gray-500 hover:text-gray-700 absolute top-8 right-0"
+                className="text-gray-500 hover:text-gray-700 absolute -right-8 top-8"
                 icon={IoAddCircleOutline}
               />
             </div>
@@ -200,9 +212,9 @@ const AddTaskPopUpProps = ({ onClose, status }: AddTaskPopUpProps) => {
                   >
                     <div className="h-4 w-4 rounded-xl bg-indigo-300 mr-1">
                       <img
-                          src={member.picture}
-                          alt={member.name}
-                          className="h-full w-full object-cover rounded-full"
+                        src={member.picture}
+                        alt={member.name}
+                        className="h-full w-full object-cover rounded-full"
                       />
                     </div>
                     <span className="text-xs mr-1">{member.name}</span>
