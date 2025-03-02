@@ -35,7 +35,6 @@ export default function RootLayout({
         <SidebarProvider>
           <ProjectProvider>
             <div className="h-screen w-screen flex flex-row">
-              <Sidebar />
               {children}
             </div>
           </ProjectProvider>
