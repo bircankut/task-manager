@@ -7,7 +7,7 @@ import { useProject } from "@/contexts/project-context";
 import { projects } from "@/entities/models/project";
 import WeekHoursChart from "@/components/time-chart/time-chart";
 import cns from "classnames";
-import { COLORS } from "@/components/dashboard-components/dashboard-team-member-pictures/dashboard-team-member-pictures";
+import { COLORS } from "@/components/content-components/content-team-member-pictures/content-team-member-pictures";
 
 const Profile = () => {
   const { currentUser, getTasksByTeamMember } = useProject();
@@ -33,7 +33,7 @@ const Profile = () => {
                     key={key}
                     className="flex flex-col h-24 min-w-28 bg-white rounded-xl relative mr-3 pt-5 pb-3 px-2 shadow-md"
                   >
-                    <div className="h-7 w-7 absolute bottom-20 left-2 bg-white shadow-md rounded-3xl text-xs">
+                    <div className="h-7 w-7 absolute bottom-20 left-2 bg-white shadow-md rounded-3xl text-xs flex items-center justify-center">
                       logo
                     </div>
                     <span className="text-[11px] leading-[1] font-semibold mb-2">
