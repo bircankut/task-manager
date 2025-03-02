@@ -10,3 +10,9 @@ body {
   width: 0;
   background: transparent;
 }
+
+hr {
+  border: 1px dashed #8b8b8b;
+  clear: both;
+  width: 35%;
+}
