@@ -2,7 +2,7 @@
 
 import Calendar from "react-calendar";
 import React, { useState, useEffect } from "react";
-import 'react-calendar/dist/Calendar.css';
+import "react-calendar/dist/Calendar.css";
 type ValuePiece = Date | null;
 
 const DashboardCalendar = () => {
@@ -28,13 +28,11 @@ const DashboardCalendar = () => {
 
   return (
     <div className="h-full w-full p-4">
-
       <div className="w-full h-full ">
         <Calendar
           className="w-full h-full grid "
           onChange={handleDateChange}
           value={selectedDate}
-
           tileClassName={({ date, view }) =>
             view === "month" ? "border-t border-l border-r p-1" : undefined
           }
@@ -44,4 +42,4 @@ const DashboardCalendar = () => {
   );
 };
 
-export default DashboardCalendar;
+export { Calendar };
