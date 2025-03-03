@@ -13,6 +13,7 @@
     "@dnd-kit/sortable": "^10.0.0",
     "chart.js": "^4.4.7",
     "classnames": "^2.5.1",
+    "color-thief-browser": "^2.0.2",
     "date-fns": "^4.1.0",
     "next": "15.1.5",
     "react": "^19.0.0",
