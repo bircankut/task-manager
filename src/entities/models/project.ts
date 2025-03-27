@@ -5,6 +5,7 @@ export interface Project {
   id: number;
   name: string;
   logo: string;
+  description: string;
   backgroundImage: string;
   createdAt: string;
   dueDate: string;
@@ -16,6 +17,7 @@ export const projects: Project[] = [
   {
     id: 1,
     name: "Task Manager App",
+    description: "A project management tool for organizing tasks, assigning team members, and tracking deadlines.",
     logo: "https://example.com/task-manager-logo.png",
     backgroundImage: "/prbg3.jpg",
     createdAt: new Date().toISOString(),
@@ -93,6 +95,7 @@ export const projects: Project[] = [
     id: 2,
     name: "E-commerce Platform",
     logo: "https://example.com/ecommerce-logo.png",
+    description: "An online shopping platform with a secure checkout system and product management features.",
     backgroundImage: "/prbg5.jpg",
     createdAt: new Date().toISOString(),
     dueDate: "2025-12-15T23:59:59.000Z",
