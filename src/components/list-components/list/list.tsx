@@ -11,9 +11,9 @@ import {
   DragEndEvent,
   DragStartEvent,
 } from "@dnd-kit/core";
-import { DashboardHeader } from "@/components/dashboard-components/dashboard-header/dashboard-header";
-import Droppable from "@/components/dashboard-components/dashboard/droppable";
-import Draggable from "@/components/dashboard-components/dashboard/draggable";
+import { ListHeader } from "@/components/list-components/list-header/list-header";
+import Droppable from "@/components/list-components/list/droppable";
+import Draggable from "@/components/list-components/list/draggable";
 import { HiOutlineDotsVertical } from "react-icons/hi";
 import { RiAttachmentLine } from "react-icons/ri";
 import { LuMessagesSquare } from "react-icons/lu";
@@ -21,7 +21,7 @@ import IconButton from "@/components/icon-button/icon-button";
 import { useProject } from "@/contexts/project-context";
 import cns from "classnames";
 import { createPortal } from "react-dom";
-import { EditTask } from "@/components/dashboard-components/edit-task/edit-task";
+import { EditTask } from "@/components/list-components/edit-task/edit-task";
 
 export const COLORS = [
   "bg-indigo-100",
@@ -37,7 +37,7 @@ const sections = [
   { title: "Done", status: "done" },
 ];
 
-const Dashboard = () => {
+const List = () => {
   const { currentProject, updateTask, addTask, setCurrentProject } =
     useProject();
   const [activeTaskId, setActiveTaskId] = useState<number | null>(null);
@@ -94,7 +94,7 @@ const Dashboard = () => {
         {sections.map((section, key) => (
           <div key={key} className="flex flex-col h-full w-full">
             <div className="sticky top-0 bg-gray-100 py-2">
-              <DashboardHeader
+              <ListHeader
                 key={section.status}
                 title={section.title}
                 taskCount={
@@ -272,4 +272,4 @@ const Dashboard = () => {
   );
 };
 
-export { Dashboard };
+export { List };

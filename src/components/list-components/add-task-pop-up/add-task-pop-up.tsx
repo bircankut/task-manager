@@ -4,7 +4,7 @@ import React, { ChangeEvent, useState } from "react";
 import { IoAddCircleOutline, IoCloseCircleOutline } from "react-icons/io5";
 import { useProject } from "@/contexts/project-context";
 import cns from "classnames";
-import { COLORS } from "@/components/dashboard-components/dashboard/dashboard";
+import { COLORS } from "@/components/list-components/list/list";
 import { TeamMember } from "@/entities/models/member";
 import IconButton from "@/components/icon-button/icon-button";
 import { TaskInput } from "@/components/task-input/task-input";

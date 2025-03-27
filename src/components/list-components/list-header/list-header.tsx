@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { AddTaskPopUpProps } from "@/components/dashboard-components/add-task-pop-up/add-task-pop-up";
+import { AddTaskPopUpProps } from "@/components/list-components/add-task-pop-up/add-task-pop-up";
 import { createPortal } from "react-dom";
 
 interface HeaderProps {
@@ -10,7 +10,7 @@ interface HeaderProps {
   status: string;
 }
 
-const DashboardHeader = ({ title, taskCount, status }: HeaderProps) => {
+const ListHeader = ({ title, taskCount, status }: HeaderProps) => {
   const [isPopUpOpen, setIsPopUpOpen] = useState(false);
   return (
     <div className="flex flex-row items-center justify-between">
@@ -38,4 +38,4 @@ const DashboardHeader = ({ title, taskCount, status }: HeaderProps) => {
   );
 };
 
-export { DashboardHeader };
+export { ListHeader };

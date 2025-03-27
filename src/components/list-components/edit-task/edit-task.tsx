@@ -4,7 +4,7 @@ import { IoAddCircleOutline } from "react-icons/io5";
 import { Task } from "@/entities/models/task";
 import { useProject } from "@/contexts/project-context";
 import cns from "classnames";
-import { COLORS } from "@/components/dashboard-components/dashboard/dashboard";
+import { COLORS } from "@/components/list-components/list/list";
 import IconButton from "@/components/icon-button/icon-button";
 import { TaskInput } from "@/components/task-input/task-input";
 import { TaskTextarea } from "@/components/task-textarea/task-textarea";
