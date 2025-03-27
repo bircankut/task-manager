@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { sectionComponents } from "@/components/content-components/content-nav/navbar-index";
 
 interface ContentNavProps {
@@ -20,26 +20,23 @@ const ContentNav = ({
   ];
 
   return (
-    <div
-      className="h-11 w-full flex flex-row justify-between items-center rounded-xl px-10"
-      style={{
-        boxShadow: "20px 20px 60px #bebebe, -20px -20px 60px #ffffff",
-      }}
-    >
-      {navItems.map((item) => (
-        <button
-          key={item}
-          className={`h-full w-32 p-2 rounded-xl transition-colors ${
-            selectedSection === item
-              ? "bg-indigo-600 text-white"
-              : "hover:bg-indigo-100"
-          }`}
-          onClick={() => handleSectionClick(item)}
-        >
-          {item}
-        </button>
-      ))}
-    </div>
+    <nav className=" px-6 flex justify-center bg-white rounded-3xl shadow">
+      <div className="glass-panel rounded-full px-2 py-2 flex space-x-2">
+        {navItems.map((item) => (
+          <button
+            key={item}
+            className={`h-10 w-32 p-2 rounded-3xl transition-colors ${
+              selectedSection === item
+                ? "bg-indigo-500 text-white"
+                : "hover:bg-indigo-100"
+            }`}
+            onClick={() => handleSectionClick(item)}
+          >
+            {item}
+          </button>
+        ))}
+      </div>
+    </nav>
   );
 };
 

@@ -1,9 +1,9 @@
 import { Overview } from "@/components/overview/overview";
-import { List } from "@/components/list/list";
 import { Timeline } from "@/components/timeline/timeline";
-import {Dashboard} from "@/components/dashboard-components/dashboard/dashboard";
-import { Calendar } from "@/components/calendar/calendar";
+import { List } from "@/components/list-components/list/list";
+import { ContentCalendar } from "@/components/calendar/calendar";
 import type { ReactElement } from "react";
+import { Dashboard } from "@/components/dashboard/dashboard";
 
 type SectionName = "Overview" | "List" | "Dashboard" | "Timeline" | "Calendar";
 
@@ -12,5 +12,5 @@ export const sectionComponents: Record<SectionName, () => ReactElement> = {
   List: () => <List />,
   Dashboard: () => <Dashboard />,
   Timeline: () => <Timeline />,
-  Calendar: () => <Calendar />,
+  Calendar: () => <ContentCalendar />,
 };

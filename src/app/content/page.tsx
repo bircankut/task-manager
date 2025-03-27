@@ -7,7 +7,7 @@ interface ContentProps {}
 
 export default function Content({}: ContentProps) {
   const [selectedSection, setSelectedSection] =
-    useState<keyof typeof sectionComponents>("Dashboard");
+    useState<keyof typeof sectionComponents>("List");
 
   const handleSectionClick = (section: keyof typeof sectionComponents) => {
     setSelectedSection(section);
