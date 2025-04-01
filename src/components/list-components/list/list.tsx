@@ -32,7 +32,7 @@ export const COLORS = [
 ];
 
 const sections = [
-  { title: "In the List", status: "in-list" },
+  { title: "To Do", status: "todo" },
   { title: "In Progress", status: "in-progress" },
   { title: "Done", status: "done" },
 ];
