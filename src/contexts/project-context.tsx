@@ -11,11 +11,15 @@ interface ProjectContextData {
   setCurrentProject: (project: Project) => void;
   addTask: (task: Omit<Task, "id">) => void;
   updateTask: (id: number, updatedFields: Partial<Task>) => void;
-  getTasksByTeamMember: (
+  getCurrentUsersTasks: (
     teamMember: TeamMember,
     allProjects: Project[],
   ) => Task[];
   currentUser: TeamMember;
+  getTeamMembersTask: (
+    teamMember: TeamMember,
+    currentProject: Project,
+  ) => Task[];
 }
 
 const ProjectContext = createContext<ProjectContextData>({
@@ -24,6 +28,7 @@ const ProjectContext = createContext<ProjectContextData>({
     name: "",
     logo: "",
     backgroundImage: "",
+    description: "",
     createdAt: "",
     dueDate: "",
     tasks: [],
@@ -32,7 +37,7 @@ const ProjectContext = createContext<ProjectContextData>({
   setCurrentProject: (_project) => undefined,
   addTask: (task: Omit<Task, "id">) => undefined,
   updateTask: (id: number, updatedFields: Partial<Task>) => undefined,
-  getTasksByTeamMember: (teamMember: TeamMember, allProjects: Project[]) => [],
+  getCurrentUsersTasks: (teamMember: TeamMember, allProjects: Project[]) => [],
   currentUser: {
     id: 1,
     picture: "",
@@ -41,6 +46,7 @@ const ProjectContext = createContext<ProjectContextData>({
     email: "",
     assignedProjects: [],
   },
+  getTeamMembersTask: (teamMember: TeamMember, currentProject: Project) => [],
 });
 
 export const ProjectProvider = ({ children }: { children: ReactNode }) => {
@@ -62,7 +68,7 @@ export const ProjectProvider = ({ children }: { children: ReactNode }) => {
   const updateTask = (taskId: number, updatedFields: Partial<Task>) => {
     setCurrentProject((prevProject) => {
       const updatedTasks = prevProject.tasks.map((task) =>
-          task.id === taskId ? { ...task, ...updatedFields } : task
+        task.id === taskId ? { ...task, ...updatedFields } : task,
       );
 
       console.log("Updated tasks:", updatedTasks);
@@ -74,8 +80,7 @@ export const ProjectProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
-
-  const getTasksByTeamMember = (
+  const getCurrentUsersTasks = (
     member: TeamMember,
     allProjects: Project[],
   ): Task[] => {
@@ -90,6 +95,16 @@ export const ProjectProvider = ({ children }: { children: ReactNode }) => {
     );
   };
 
+  const getTeamMembersTask = (
+    member: TeamMember,
+    currentProject: Project,
+  ): Task[] =>
+    currentProject.tasks.filter((task) =>
+      member.assignedProjects.some(
+        (p) => p.projectId === currentProject.id && p.tasks.includes(task.id),
+      ),
+    );
+
   return (
     <ProjectContext.Provider
       value={{
@@ -97,8 +112,9 @@ export const ProjectProvider = ({ children }: { children: ReactNode }) => {
         setCurrentProject,
         addTask,
         updateTask,
-        getTasksByTeamMember,
+        getCurrentUsersTasks,
         currentUser,
+        getTeamMembersTask,
       }}
     >
       {children}

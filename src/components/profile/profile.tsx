@@ -10,8 +10,8 @@ import cns from "classnames";
 import { COLORS } from "@/components/content-components/content-team-member-pictures/content-team-member-pictures";
 
 const Profile = () => {
-  const { currentUser, getTasksByTeamMember } = useProject();
-  const memberTasks = getTasksByTeamMember(currentUser, projects);
+  const { currentUser, getCurrentUsersTasks } = useProject();
+  const memberTasks = getCurrentUsersTasks(currentUser, projects);
 
   return (
     <div className="h-full w-80 text-gray-800 bg-indigo-50 border-l-2 border-b-indigo-200">
