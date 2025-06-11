@@ -9,6 +9,7 @@ import { TeamMember } from "@/entities/models/member";
 import IconButton from "@/components/icon-button/icon-button";
 import { TaskInput } from "@/components/task-input/task-input";
 import { TaskTextarea } from "@/components/task-textarea/task-textarea";
+import {TASK_STATUS} from "@/enums/task-status";
 
 interface AddTaskPopUpProps {
   onClose: () => void;
@@ -31,7 +32,7 @@ const AddTaskPopUpProps = ({ onClose, status }: AddTaskPopUpProps) => {
     dueDate: "",
     tags: [],
     assignedTo: [],
-    status: "",
+    status: "todo",
   });
   const [tagInput, setTagInput] = useState("");
   const handleChange = (
@@ -106,8 +107,10 @@ const AddTaskPopUpProps = ({ onClose, status }: AddTaskPopUpProps) => {
       attachments: [],
       assignedTo: task.assignedTo,
       discussions: [],
-      status: status,
+      status: status as TASK_STATUS,
       createdAt: new Date().toISOString(),
+      dueDate: task.dueDate,
+      lastModifiedAt: new Date().toISOString(),
     });
 
     onClose();
