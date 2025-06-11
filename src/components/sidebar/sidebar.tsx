@@ -78,49 +78,49 @@ const Sidebar = () => {
       <div
         className={cns(
           isSidebarExpanded ? "w-60" : "w-0",
-          "flex flex-col transition-all duration-300 overflow-hidden",
+          "flex flex-col transition-all duration-300 overflow-hidden ",
         )}
       >
         {openSection === "home" && (
           <div className="p-4">
-            <h2 className="text-lg font-semibold">Home</h2>
+            <h2 className="text-lg font-semibold text-neutral-600">Home</h2>
             <p>Welcome to your dashboard.</p>
           </div>
         )}
 
         {openSection === "notifications" && (
           <div className="p-4">
-            <h2 className="text-lg font-semibold">Notifications</h2>
+            <h2 className="text-lg font-semibold text-neutral-600">Notifications</h2>
             <ul className="mt-2 space-y-2">
-              <li className="p-2 bg-gray-200 rounded-md">Notification 1</li>
-              <li className="p-2 bg-gray-200 rounded-md">Notification 2</li>
+              <li className="p-2 bg-gray-200 rounded-md text-neutral-600">Notification 1</li>
+              <li className="p-2 bg-gray-200 rounded-md text-neutral-600">Notification 2</li>
             </ul>
           </div>
         )}
 
         {openSection === "messages" && (
           <div className="p-4">
-            <h2 className="text-lg font-semibold">Messages</h2>
+            <h2 className="text-lg font-semibold text-neutral-600">Messages</h2>
             <ul className="mt-2 space-y-2">
-              <li className="p-2 bg-gray-200 rounded-md">Message 1</li>
-              <li className="p-2 bg-gray-200 rounded-md">Message 2</li>
+              <li className="p-2 bg-gray-200 rounded-md text-neutral-600">Message 1</li>
+              <li className="p-2 bg-gray-200 rounded-md text-neutral-600">Message 2</li>
             </ul>
           </div>
         )}
 
         {openSection === "team" && (
           <div className="p-4">
-            <h2 className="text-lg font-semibold">Team Members</h2>
+            <h2 className="text-lg font-semibold text-neutral-600">Team Members</h2>
             <ul className="mt-2 space-y-2">
-              <li className="p-2 bg-gray-200 rounded-md">User 1</li>
-              <li className="p-2 bg-gray-200 rounded-md">User 2</li>
+              <li className="p-2 bg-gray-200 rounded-md text-neutral-600">User 1</li>
+              <li className="p-2 bg-gray-200 rounded-md text-neutral-600">User 2</li>
             </ul>
           </div>
         )}
 
         {openSection === "projects" && (
-          <div className="p-4">
-            <h2 className="text-xl font-semibold mb-4">Projects</h2>
+          <div className="p-4 ">
+            <h2 className="text-xl font-semibold mb-4 text-neutral-600">Projects</h2>
             <select
               value={currentProject?.id}
               onChange={(e) => {
@@ -129,7 +129,7 @@ const Sidebar = () => {
                 );
                 if (selectedProject) setCurrentProject(selectedProject);
               }}
-              className="p-2 bg-gray-700 rounded text-white"
+              className="px-1 p-3 bg-violet-100 rounded text-neutral-600 w-full"
             >
               {projects.map((project) => (
                 <option key={project.id} value={project.id}>
@@ -139,11 +139,11 @@ const Sidebar = () => {
             </select>
 
             <div className="mt-6">
-              <h3 className="text-lg font-semibold">Current Project</h3>
+              <h3 className="text-lg text-neutral-600 font-semibold">Current Project</h3>
               {currentProject && (
-                <div className="mt-2 p-3 rounded">
-                  <p className="font-bold">{currentProject.name}</p>
-                  <p className="text-sm">
+                <div className="mt-2rounded">
+                  <p className="font-bold text-neutral-600">{currentProject.name}</p>
+                  <p className="text-sm text-neutral-600">
                     Due: {new Date(currentProject.dueDate).toLocaleDateString()}
                   </p>
                 </div>
@@ -154,14 +154,14 @@ const Sidebar = () => {
 
         {openSection === "help" && (
           <div className="p-4">
-            <h2 className="text-lg font-semibold">Help</h2>
+            <h2 className="text-lg font-semibold text-neutral-600">Help</h2>
             <p>Need assistance? Contact support.</p>
           </div>
         )}
 
         {openSection === "settings" && (
           <div className="p-4">
-            <h2 className="text-lg font-semibold">Settings</h2>
+            <h2 className="text-lg font-semibold text-neutral-600">Settings</h2>
             <p>Adjust your preferences here.</p>
           </div>
         )}
